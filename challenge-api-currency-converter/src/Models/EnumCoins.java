@@ -151,7 +151,7 @@ public enum EnumCoins {
     USD("United States Dollar"),
     UYU("Uruguay Peso"),
     UZS("Uzbekistan Som"),
-    VEF("Venezuela Bolivar"),
+    VES("Venezuela Bolivar"),
     VND("Viet Nam Dong"),
     VUV("Vanuatu Vatu"),
     WST("Samoa Tala"),

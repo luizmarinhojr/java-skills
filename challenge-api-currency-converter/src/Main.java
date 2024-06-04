@@ -1,20 +1,19 @@
 import Models.EnumCoins;
 import Services.API;
+import Services.Conversions;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) {
         Scanner reader = new Scanner(System.in);
-
-        System.out.println("**************************************");
-        System.out.println("Welcome to currency converter :)");
-        System.out.println("**************************************");
-
         int choiceMenu;
+        int status;
         String choiceCountry = "";
         String choiceToCountry = "";
+
+        System.out.println("__________ WELCOME TO CURRENCY CONVERTER __________");
+
         do {
             double choiceValue = 0;
             System.out.println("\n---------------------- MENU -----------------------");
@@ -33,39 +32,29 @@ public class Main {
             System.out.print("\nChoose a option -> ");
             choiceMenu = Integer.parseInt(reader.nextLine());
 
-            int status = 0;
-            if (choiceMenu < 7) {
-                do {
-                    try {
-                        System.out.print("Type the value you wanna convert: ");
-                        choiceValue = Double.parseDouble(reader.nextLine());
-                        if (choiceValue <= 0) {
-                            throw new NullPointerException();
-                        }
-                        status = 1;
-                    } catch (NumberFormatException | NullPointerException e) {
-                        System.out.println("ERROR: Please, type a valid number.");
-                    }
-                } while (status == 0);
-            }
-
             switch (choiceMenu) {
                 case 1:
+                    choiceValue = Conversions.askValue("USD");
                     API.searchCurrencyValues("USD", "ARS", choiceValue);
                     break;
                 case 2:
+                    choiceValue = Conversions.askValue("ARS");
                     API.searchCurrencyValues("ARS", "USD", choiceValue);
                     break;
                 case 3:
+                    choiceValue = Conversions.askValue("USD");
                     API.searchCurrencyValues("USD", "BRL", choiceValue);
                     break;
                 case 4:
+                    choiceValue = Conversions.askValue("BRL");
                     API.searchCurrencyValues("BRL", "USD", choiceValue);
                     break;
                 case 5:
+                    choiceValue = Conversions.askValue("USD");
                     API.searchCurrencyValues("USD", "COP", choiceValue);
                     break;
                 case 6:
+                    choiceValue = Conversions.askValue("COP");
                     API.searchCurrencyValues("COP", "USD", choiceValue);
                     break;
                 case 7:
@@ -75,7 +64,7 @@ public class Main {
                     status = 0;
                     do {
                         try {
-                            System.out.print("\nType your choice (Ex: BRL) -> ");
+                            System.out.print("\nFrom currency (Ex: BRL) -> ");
                             choiceCountry = reader.nextLine().toUpperCase();
                             EnumCoins.valueOf(choiceCountry);
                             status = 1;
@@ -87,7 +76,7 @@ public class Main {
                     status = 0;
                     do {
                         try {
-                            System.out.print("Do you wish to convert to (Ex: USD) -> ");
+                            System.out.print("To currency (Ex: USD) -> ");
                             choiceToCountry = reader.nextLine().toUpperCase();
                             EnumCoins.valueOf(choiceToCountry);
                             status = 1;
@@ -121,8 +110,8 @@ public class Main {
 
             if (choiceMenu != 8 & choiceMenu < 8) {
                 System.out.print("\nDo you wanna search one more? (y) Yes  (n) No  -> ");
-                String choice = reader.nextLine();
-                if (choice.equals("n") || choice.equals("N")) {
+                String choice = reader.nextLine().toUpperCase();
+                if (choice.equals("N")) {
                     break;
                 }
             }
