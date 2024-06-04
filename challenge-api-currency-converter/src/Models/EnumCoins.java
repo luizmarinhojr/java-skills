@@ -78,7 +78,6 @@ public enum EnumCoins {
     KGS("Kyrgyzstan Som"),
     KHR("Cambodia Riel"),
     KMF("Comoros Franc"),
-    KPW("Korea (North) Won"),
     KRW("Korea (South) Won"),
     KWD("Kuwait Dinar"),
     KYD("Cayman Islands Dollar"),
