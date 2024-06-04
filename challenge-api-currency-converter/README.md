@@ -1,6 +1,7 @@
-# API Currency Converter
+# API Currency Converter 💵
 
 * Made with Java 21.0.3 2024-04-16 LTS
+* ![brazil](https://raw.githubusercontent.com/pedromxavier/flag-badges/main/badges/BR.svg)
 
 ## Convert values ​​from more than 150 currencies
 
