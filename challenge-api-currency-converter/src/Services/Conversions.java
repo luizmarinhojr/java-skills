@@ -4,7 +4,6 @@ import Models.Conversion;
 import Models.Currency;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.util.Map;
 
 public class Conversions {

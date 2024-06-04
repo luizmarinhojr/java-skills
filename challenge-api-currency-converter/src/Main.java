@@ -13,8 +13,8 @@ public class Main {
         System.out.println("**************************************");
 
         int choiceMenu;
-        String choiceCountry;
-        String choiceToCountry;
+        String choiceCountry = "";
+        String choiceToCountry = "";
         do {
             double choiceValue = 0;
             System.out.println("\n---------------------- MENU -----------------------");
@@ -33,9 +33,20 @@ public class Main {
             System.out.print("\nChoose a option -> ");
             choiceMenu = Integer.parseInt(reader.nextLine());
 
+            int status = 0;
             if (choiceMenu < 7) {
-                System.out.print("Type the value you wanna convert: ");
-                choiceValue = Double.parseDouble(reader.nextLine());
+                do {
+                    try {
+                        System.out.print("Type the value you wanna convert: ");
+                        choiceValue = Double.parseDouble(reader.nextLine());
+                        if (choiceValue <= 0) {
+                            throw new NullPointerException();
+                        }
+                        status = 1;
+                    } catch (NumberFormatException | NullPointerException e) {
+                        System.out.println("ERROR: Please, type a valid number.");
+                    }
+                } while (status == 0);
             }
 
             switch (choiceMenu) {
@@ -58,17 +69,46 @@ public class Main {
                     API.searchCurrencyValues("COP", "USD", choiceValue);
                     break;
                 case 7:
-                    for (EnumCoins e : EnumCoins.values()) {
+                    for (EnumCoins e : EnumCoins.values()) { // show all currencies available
                         System.out.println("(" + e + ") - " + e.getDescription());
                     }
-                    System.out.print("\nType your choice (Ex: BRL) -> ");
-                    choiceCountry = reader.nextLine().toUpperCase();
+                    status = 0;
+                    do {
+                        try {
+                            System.out.print("\nType your choice (Ex: BRL) -> ");
+                            choiceCountry = reader.nextLine().toUpperCase();
+                            EnumCoins.valueOf(choiceCountry);
+                            status = 1;
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("It doesn't exist this currency, please type again");
+                        }
+                    } while (status == 0);
 
-                    System.out.print("Do you wish to convert to (Ex: USD) -> ");
-                    choiceToCountry = reader.nextLine().toUpperCase();
+                    status = 0;
+                    do {
+                        try {
+                            System.out.print("Do you wish to convert to (Ex: USD) -> ");
+                            choiceToCountry = reader.nextLine().toUpperCase();
+                            EnumCoins.valueOf(choiceToCountry);
+                            status = 1;
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("It doesn't exist this currency, please type again");
+                        }
+                    } while (status == 0);
 
-                    System.out.print("Type the value you wanna convert: " + EnumCoins.valueOf(choiceCountry) + " ");
-                    choiceValue = Double.parseDouble(reader.nextLine());
+                    status = 0;
+                    do {
+                        try {
+                            System.out.print("Type the value you wanna convert: " + EnumCoins.valueOf(choiceCountry) + " ");
+                            choiceValue = Double.parseDouble(reader.nextLine());
+                            if (choiceValue <= 0) {
+                                throw new NullPointerException();
+                            }
+                            status = 1;
+                        } catch (NumberFormatException | NullPointerException e) {
+                            System.out.println("ERROR: Please, type a valid number.");
+                        }
+                    } while (status == 0);
 
                     API.searchCurrencyValues(choiceCountry, choiceToCountry, choiceValue);
                     break;
@@ -79,7 +119,7 @@ public class Main {
                     System.out.println("Invalid option, please try again.");
             }
 
-            if (choiceMenu != 8) {
+            if (choiceMenu != 8 & choiceMenu < 8) {
                 System.out.print("\nDo you wanna search one more? (y) Yes  (n) No  -> ");
                 String choice = reader.nextLine();
                 if (choice.equals("n") || choice.equals("N")) {
