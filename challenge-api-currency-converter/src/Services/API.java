@@ -8,7 +8,7 @@ import java.net.http.HttpResponse;
 
 public class API {
     public static void searchCurrencyValues(String currency, String toCurrency, double value) {
-        String apiKey = "77a4cd30bec036bbf6107740";
+        String apiKey = "API_KEY";
         String url = "https://v6.exchangerate-api.com/v6/" + apiKey + "/latest/" + currency;
         HttpResponse<String> response;
         try (HttpClient client = HttpClient.newHttpClient()) {
