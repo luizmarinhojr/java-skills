@@ -30,6 +30,7 @@ public class CepAPI {
 
     public void searchCEP() {
         HttpResponse<String> response;
+        System.out.println(this.url);
         try (HttpClient client = HttpClient.newHttpClient()) {
             HttpRequest request = HttpRequest.newBuilder().uri(URI.create(this.url)).build();
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
