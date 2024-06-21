@@ -1,6 +1,6 @@
 package model;
 
-public interface NavegadorInternet {
+public interface INavegadorInternet {
     void exibirPagina(String url);
     void adicionarNovaAba();
     void atualizarPagina();

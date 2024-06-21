@@ -1,6 +1,17 @@
 package model;
 
-public class Iphone implements AparelhoTelefonico, NavegadorInternet, ReprodutorMusical{
+public class Iphone implements IAparelhoTelefonico, INavegadorInternet, IReprodutorMusical {
+    private String numero;
+    private String imei;
+    private String modelo;
+    private double ram;
+
+    public Iphone(String numero, String imei, String modelo, double ram) {
+        this.numero = numero;
+        this.imei = imei;
+        this.modelo = modelo;
+        this.ram = ram;
+    }
 
     @Override
     public void ligar(String numero) {
@@ -46,5 +57,25 @@ public class Iphone implements AparelhoTelefonico, NavegadorInternet, Reprodutor
     @Override
     public void selecionarMusica(String musica) {
         System.out.println("Selecionando música do reprodutor musical...");
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getImei() {
+        return imei;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public double getRam() {
+        return ram;
     }
 }

@@ -2,7 +2,7 @@ import model.Iphone;
 
 public class Main {
     public static void main(String[] args) {
-        Iphone iphone = new Iphone();
+        Iphone iphone = new Iphone("21333333333", "8321333322222231", "Galaxy S20", 6.0);
 
         iphone.ligar("21999999999");
         iphone.atender();
